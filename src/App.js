@@ -4,8 +4,7 @@ import './App.css';
 import Search from "./search";
 
 function App() {
-
-  const [data, setData] = useState();
+  const [title, setTitle] = useState();
   const [year, setYear] = useState(); 
 
   useEffect(() => {
@@ -13,13 +12,13 @@ function App() {
 
     var config = {
       method: 'get',
-      url: 'https://api.themoviedb.org/3/search/movie?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US&query=iron man&page=1&include_adult=false',
+      url: ,
       headers: { }
     };
     
     axios(config)
     .then(function (response) {
-      setData(response.data.results[0].title);
+      setTitle(response.data.results[0].title);
       let release = response.data.results[0].release_date
       setYear(release.slice(0, 4));
     })
@@ -49,11 +48,11 @@ function App() {
       </div>
 
       <div id="title">
-        <h1>{data} ({year})</h1>
+        <h1>{title} ({year})</h1>
         <img src="" alt="" />
       </div>
 
-      <Search />
+      <Search title={title} year={year}/>
     </div>
   );
 }
