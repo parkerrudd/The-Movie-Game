@@ -3,8 +3,9 @@ import React from "react";
 function Actor (props) {
 
     return (
-        <div>
-            <h1>{props.actor}</h1>
+        <div id="title">
+            <h1>{props.current} ({props.year})</h1>
+            <img src="" alt="" />
         </div>
     ); 
 }; 

@@ -9,6 +9,16 @@
     height: 100vh;
 }
 
+.guess-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FAD8D6;
+    height: 80vh;
+    gap: 5vh;
+}
+
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -30,7 +40,6 @@
     align-items: center;
     outline: 3px solid #FAD8D6;
     color: #FAD8D6; 
-    /* text-shadow: 3px 5px 2px #474747; */
 }
 
 .wrong {
@@ -38,12 +47,17 @@
     background: #2E282A;
 }
 
+.right {
+    color: #08a154;
+    background: #2E282A;
+}
+
 #title {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45vh;
     color: #FAD8D6;
+    /* height: 45vh; */
 }
 
 .search-container {
@@ -57,7 +71,7 @@
     border-radius: 100px;
     border: none;
     padding: 1em 2em;
-    width: 20vw;
+    width: 30vw;
 }
 
 .actor-search-btn {
