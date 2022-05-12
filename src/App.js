@@ -9,12 +9,8 @@ import GuessTable from "./GuessTable";
 
 function App() {
   const [current, setCurrent] = useState();
-  const [wrongCount, setWrongCount] = useState(0); 
-  const [rightCount, setRightCount] = useState(0); 
   const [guessCount, setGuessCount] = useState(0); 
-  const [guessesArr, setGuessesArr] = useState([]); 
-  const [mRight, setMRight] = useState(false); 
-  const [mWrong, setMWrong] = useState(false); 
+  
 
   const [correctTitle, setCorrectTitle] = useState(""); 
   const [correctID, setCorrectID] = useState(""); 
@@ -52,7 +48,7 @@ function App() {
         setMovie(event.target.value); 
     }; 
 
-    const actorQuery = () => { 
+    const movieQuery = () => { 
       const axios = require('axios');
 
       let config = {
@@ -66,6 +62,7 @@ function App() {
       .then((response) => {
         setMovieID(response.data.results[0].id);
         console.log(movieID)
+        setGuessCount(guessCount + 1)
       })
       .catch((error) => {
         console.log(error);
@@ -136,21 +133,25 @@ function App() {
   return (
     <div className="App">
       <div className="guess-section">  
-        <Letters mRight={mRight} mWrong={mWrong}/>
+        <h1 id="the">The</h1>
+        <Letters/>
+        <h1 id="game">Game</h1>
         
-          <Actor current={current} />
-
+         {/* <Actor current={current} /> */}
+  
           <h2>Guess Count: {guessCount}/10</h2>
         
             <div>
                 <div className="search-container">
                     <input onChange={getInputValue} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
-                    <button onClick={actorQuery} className="actor-search-btn">Guess</button>
+                    <button onClick={movieQuery} className="actor-search-btn">Guess</button>
                 </div>
 
             </div>
       </div>   
-        <GuessTable movieID={movieID} /> 
+        <GuessTable movieID={movieID} guessCount={guessCount} 
+        correctActors={correctActors} correctCompany={correctCompany} correctDirector={correctDirector}
+        correctGenre={correctGenre} correctTitle={correctTitle} correctYear={correctYear}/> 
     </div>
   );
 }
