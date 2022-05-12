@@ -3,6 +3,8 @@ import axios from "axios";
 import './App.css'; 
 import Letters from "./letters";
 import Actor from "./actor";
+import GuessTable from "./GuessTable";
+// import Autocomplete from "./Autocomplete";
 
 
 function App() {
@@ -113,22 +115,22 @@ function App() {
 
   return (
     <div className="App">
-    <div className="guess-section">  
-      <Letters mRight={mRight} mWrong={mWrong}/>
-      
-        <Actor current={current} year={year} />
+      <div className="guess-section">  
+        <Letters mRight={mRight} mWrong={mWrong}/>
+        
+          <Actor current={current} year={year} />
 
-        <h2>Count: {guessCount}</h2>
-      
+          <h2>Count: {guessCount}</h2>
+        
+            <div>
+                <div className="search-container">
+                    <input onChange={getInputValue} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
+                    <button onClick={actorQuery} className="actor-search-btn">Guess</button>
+                </div>
 
-          <div>
-              <div className="search-container">
-                  <input onChange={getInputValue} className="actors-searchbar" type="text" placeholder="Search Actors..." required/>
-                  <button onClick={actorQuery} className="actor-search-btn">Guess</button>
-              </div>
-
-          </div>
-      </div>    
+            </div>
+      </div>   
+        <GuessTable /> 
     </div>
   );
 }

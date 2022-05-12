@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     color: #FAD8D6;
-    height: 80vh;
+    height: 70vh;
     gap: 5vh;
 }
 
@@ -83,5 +83,38 @@
 .actor-search-btn:hover {
     cursor: pointer;
     background: #e8cac9; 
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#headers {
+    width: 80vw;
+    display: flex;
+    justify-content: center;   
+    /* gap: 8vw; */
+    font-size: 1.2em;
+    border-bottom: 3px solid #2E282A;
+    border-top: 3px solid #2E282A;
+}
+
+th, td {
+    width: 20vw;
+    text-align: center;
+    border-left: 1.5px solid #2E282A;
+    border-right: 1.5px solid #2E282A;
+    padding: 1em;
+}
+
+#results {
+    width: 80vw;
+    display: flex;
+    justify-content: center;    
+    border-bottom: 2px solid #2E282A;
+    color: #f9e1e0;
 }
 
