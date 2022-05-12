@@ -9,7 +9,6 @@ import GuessTable from "./GuessTable";
 
 function App() {
   const [current, setCurrent] = useState();
-  const [year, setYear] = useState(); 
   const [wrongCount, setWrongCount] = useState(0); 
   const [rightCount, setRightCount] = useState(0); 
   const [guessCount, setGuessCount] = useState(0); 
@@ -17,6 +16,8 @@ function App() {
   const [mRight, setMRight] = useState(false); 
   const [mWrong, setMWrong] = useState(false); 
 
+  const [correctTitle, setCorrectTitle] = useState(""); 
+  const [correctID, setCorrectID] = useState(""); 
 
   //GENERATE STARTING POINT
   const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption']
@@ -33,94 +34,113 @@ function App() {
     axios(config)
     .then(function (response) {
       setCurrent(response.data.results[0].title);
-      let release = response.data.results[0].release_date
-      setYear(release.slice(0, 4));
+      setCorrectTitle(response.data.results[0].title)
+      setCorrectID(response.data.results[0].id)
     })
     .catch(function (error) {
       console.log(error);
     });
   }, []); 
 
-    const [actor, setActor] = useState(''); 
-    const [actorID, setActorID] = useState(''); 
+    const [movie, setMovie] = useState(''); 
+    const [movieID, setMovieID] = useState(''); 
     const [guess, setGuess] = useState(); 
 
 
-    //GET ACTOR AND SET ID
+    //GET MOVIE GUESS AND SET ID
     const getInputValue = (event) => {
-        setActor(event.target.value); 
+        setMovie(event.target.value); 
     }; 
 
     const actorQuery = () => { 
-        var axios = require('axios');
+      const axios = require('axios');
 
-        var config = {
+      let config = {
         method: 'get',
-        url: `https://api.themoviedb.org/3/search/person?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false`,
-        params: {query: actor},  
+        url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false`,
+        params: {query: movie}, 
+        
       };
-
-        axios(config)
-        .then(function (response) {
-        console.log(response.data.results[0].id);
-        setActorID(response.data.results[0].id); 
-        })
-        .catch(function (error) {
+      
+      axios(config)
+      .then((response) => {
+        setMovieID(response.data.results[0].id);
+        console.log(movieID)
+      })
+      .catch((error) => {
         console.log(error);
-    });
+      }); 
     }; 
 
-    //CHECK IF GUESS IS CORRECT
+    const [correctYear, setCorrectYear] = useState(""); 
+    const [correctCompany, setCorrectCompany] = useState(""); 
+    const [correctGenre, setCorrectGenre] = useState(""); 
+
+    //GET CORRECT MOVIE DETAILS
     useEffect(() => {
-        var axios = require('axios');
+      const axios = require('axios');
 
-        var config = {
-        method: 'get',
-        url: `https://api.themoviedb.org/3/person/${actorID}/movie_credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
-        headers: { 
-        }
-        };
+      let config = {
+      method: 'get',
+      url: `https://api.themoviedb.org/3/movie/${correctID}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+      params: {}
+      };
 
-        axios(config)
-        .then(function (response) {
-           const movies = response.data.cast;
-           let arr = []; 
-           for (let i = 0; i < movies.length; i++) {
-               if (movies[i].title.includes(current) && movies[i].release_date.slice(0, 4) === year) {
-                 setGuessesArr(guessesArr.push(1)); 
-                } 
-                if (guessesArr.length > 0) {
-                  setCurrent(actor)
-                  setGuessCount(guessCount + 1); 
-                  setRightCount(rightCount + 1); 
-                } else {
-                  setWrongCount(wrongCount + 1); 
-                  setGuessCount(guessCount + 1); 
-                }
-            }
-        })       
-        .catch(function (error) {
-        console.log(error);
-        });
-    }, [actorID]); 
+      axios(config)
+      .then((response) => {
+        setCorrectYear(response.data.release_date.slice(0, 4))
+        setCorrectGenre(response.data.genres[0].name)
+        setCorrectCompany(response.data.production_companies[0].name)
+      })
+      .catch((error) => {
+      console.log(error);
+      });
 
-    //ADD RIGHT OR WRONG LETTER COLORS
+    }, [correctID])
+
+    const [correctDirector, setCorrectDirector] = useState(""); 
+    const [correctActors, setCorrectActors] = useState([]); 
+
     useEffect(() => {
-      if (guessCount > 0  && guessesArr.length > 0) {
-        setMRight(true)
-      } if (guessCount > 0 && guessesArr.length < 1) {
-        setMWrong(true)
-      } 
-    }, [guessCount])
+      const axios = require('axios');
+
+      let config = {
+      method: 'get',
+      url: `https://api.themoviedb.org/3/movie/${correctID}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+      };
+
+      axios(config)
+      .then((response) => {
+          const credits = response.data.crew
+          let correctActorsArr = []; 
+          const cast = response.data.cast
+          for (let i = 0; i < cast.length; i++) {
+            correctActorsArr.push(cast[i].name)
+          }
+          setCorrectActors(correctActorsArr)
+          let director = ""; 
+          for (let i = 0; i < credits.length; i++) {
+              if (credits[i].job === "Director") {
+                  let director = credits[i].name
+                  setCorrectDirector(director)
+                }      
+          };
+          
+      })
+      .catch((error) => {
+      console.log(error);
+      });
+
+  }, [correctID])
 
   return (
     <div className="App">
       <div className="guess-section">  
         <Letters mRight={mRight} mWrong={mWrong}/>
         
-          <Actor current={current} year={year} />
+          <Actor current={current} />
 
-          <h2>Count: {guessCount}</h2>
+          <h2>Guess Count: {guessCount}/10</h2>
         
             <div>
                 <div className="search-container">
@@ -130,7 +150,7 @@ function App() {
 
             </div>
       </div>   
-        <GuessTable /> 
+        <GuessTable movieID={movieID} /> 
     </div>
   );
 }
