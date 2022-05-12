@@ -6,7 +6,7 @@
 
 .App {
     background-image: linear-gradient(#2E282A, #EDB88B);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .guess-section {

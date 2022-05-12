@@ -1,16 +1,28 @@
-import React from "react";
-import {Freeze} from 'react-freeze'; 
+import React, { useEffect, useState } from "react";
 
-const RowOne = (props, shouldSuspendRendering) => {
+const RowOne = (props) => {
+
+    const [actorsInBothMovies, setActorsInBothMovies] = useState([])
+    useEffect(() => {
+        let inBoth = []; 
+        for (let i = 0; i < props.correctActors.length; i++) {
+            if (props.actors.includes(props.correctActors[i])) {
+            inBoth.push(props.correctActors[i])
+            }
+        }
+      if (inBoth.length > 0) {
+        setActorsInBothMovies(inBoth)
+      }
+    }, [props.actors])
 
     return (
-
+    
         <tr id="results">
                 {props.filmTitle === props.correctTitle ? <td style={{background:'#549C30'}}>{props.filmTitle}</td> 
                 :<td style={{background:'#AA3F44'}}>{props.filmTitle}</td>}
                 {props.director === props.correctDirector ? <td style={{background:'#549C30'}}>{props.director}</td> 
                 :<td style={{background:'#AA3F44'}}>{props.director}</td>}
-                {props.actors[0] === props.correctActors[0] ? <td style={{background:'#549C30'}}>{props.actors[0]}</td> 
+                {actorsInBothMovies.length > 0 ? <td style={{background:'#549C30'}}>{actorsInBothMovies}</td> 
                 :<td style={{background:'#AA3F44'}}>{props.actors[0]}</td>}
                 {props.genre === props.correctGenre ? <td style={{background:'#549C30'}}>{props.genre}</td> 
                 :<td style={{background:'#AA3F44'}}>{props.genre}</td>}
