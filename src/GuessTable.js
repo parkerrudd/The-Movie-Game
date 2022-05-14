@@ -113,8 +113,8 @@ function GuessTable(props, shouldSuspendRendering) {
           {props.guessCount > 0 ? <RowOne guessCount={props.guessCount} filmTitle={filmTitle} director={director} actors={actors} genre={genre} company={company} year={year}
           correctActors={props.correctActors} correctDirector={props.correctDirector} correctTitle={props.correctTitle}
           correctCompany={props.correctCompany} correctGenre={props.correctGenre} correctYear={props.correctYear}/> : null} 
-          
-          {props.guessCount > 1 ? <RowTwo filmTitle={secondFilmTitle} director={secondDirector} actors={secondActors} genre={secondGenre} company={secondCompany} year={secondYear}
+
+          {props.guessCount > 1 ? <RowTwo guessCount={props.guessCount} filmTitle={secondFilmTitle} director={secondDirector} actors={secondActors} genre={secondGenre} company={secondCompany} year={secondYear}
           correctActors={props.correctActors} correctDirector={props.correctDirector} correctTitle={props.correctTitle}
           correctCompany={props.correctCompany} correctGenre={props.correctGenre} correctYear={props.correctYear}/> : null} 
             

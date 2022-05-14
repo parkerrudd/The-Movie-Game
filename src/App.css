@@ -15,8 +15,8 @@
     justify-content: center;
     align-items: center;
     color: #FAD8D6;
-    height: 70vh;
-    gap: 5vh;
+    margin-bottom: 1em;
+    gap: 3vh;
 }
 
 .movie-grid {
@@ -28,7 +28,7 @@
     /* top: 2%; 
     left: 0; 
     right: 0; */
-    font-size: 2em;
+    font-size: 1.5em;
     width: 50%;
     padding-left: 1vw;
     padding-right: 1vw;
@@ -38,20 +38,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: .5px solid #FAD8D6;
+    outline: 3px solid #FAD8D6;
     color: #FAD8D6; 
-    /* background: #FFFFFF; */
-    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-    box-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+@media screen and (max-width: 550px) {
+    .movie-grid {
+        font-size: 1em;
+    }
 }
 
 #the {
     font-size: 3em;
-    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC; }
+}
 
 #game {
     font-size: 3em;
-    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC; 
 }
 
 .wrong {
@@ -86,6 +90,12 @@
     width: 30vw;
 }
 
+@media screen and (max-width: 700px) {
+    .actors-searchbar {
+        width: 50vw;
+    }
+}
+
 .actor-search-btn {
     border-radius: 10px;
     border: none;
@@ -105,7 +115,7 @@
 }
 
 #headers {
-    width: 80vw;
+    max-width: 80vw;
     display: flex;
     justify-content: center;   
     /* gap: 8vw; */
@@ -119,14 +129,18 @@ th, td {
     text-align: center;
     border-left: 1.5px solid #2E282A;
     border-right: 1.5px solid #2E282A;
-    padding: 1em;
+    font-size: 1em;
+    padding: 1vw;
 }
 
 #results {
-    width: 80vw;
+    max-width: 80vw;
     display: flex;
     justify-content: center;    
     border-bottom: 2px solid #2E282A;
     color: #f9e1e0;
 }
 
+@media screen and (max-width: 800px) {
+  
+}
