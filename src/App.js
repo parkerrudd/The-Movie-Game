@@ -139,7 +139,7 @@ function App() {
         
          {/* <Actor current={current} /> */}
   
-          <h2>Guess Count: {guessCount}/10</h2>
+          <h2>Guess Count: {guessCount}/8</h2>
         
             <div>
                 <div className="search-container">
