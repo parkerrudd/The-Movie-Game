@@ -72,6 +72,8 @@ function App() {
     const [correctYear, setCorrectYear] = useState(""); 
     const [correctCompany, setCorrectCompany] = useState(""); 
     const [correctGenre, setCorrectGenre] = useState(""); 
+    const [moviePoster, setMoviePoster] = useState(""); 
+
 
     //GET CORRECT MOVIE DETAILS
     useEffect(() => {
@@ -88,6 +90,7 @@ function App() {
         setCorrectYear(response.data.release_date.slice(0, 4))
         setCorrectGenre(response.data.genres[0].name)
         setCorrectCompany(response.data.production_companies[0].name)
+        setMoviePoster(response.data.poster_path)
       })
       .catch((error) => {
       console.log(error);
@@ -151,7 +154,7 @@ function App() {
       </div>   
         <GuessTable movieID={movieID} guessCount={guessCount} 
         correctActors={correctActors} correctCompany={correctCompany} correctDirector={correctDirector}
-        correctGenre={correctGenre} correctTitle={correctTitle} correctYear={correctYear}/> 
+        correctGenre={correctGenre} correctTitle={correctTitle} correctYear={correctYear} moviePoster={moviePoster}/> 
     </div>
   );
 }
