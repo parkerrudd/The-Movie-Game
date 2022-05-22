@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function WinPage(props) {
     const posterUrl = `https://image.tmdb.org/t/p/original/${props.moviePoster}`; 
+    // const [playAgain, setPlayAgain] = useState(false); 
+    // const playAgainHandler = () => {
+    //     setPlayAgain(true); 
+    // }
+
+    // useEffect(() => {
+    //     if (playAgain) 
+    // }, [playAgain])
 
     return (
             <div className="win-page">
                 <div className="win-page-box">
                     <h3>Guesses: {props.guessCount}</h3>
+                    <h3>{props.time}</h3>
                 </div>
                 <div>
                     <h3>Solution: {props.correctTitle}</h3>
@@ -15,7 +24,7 @@ function WinPage(props) {
                     <img className="movie-poster" src={posterUrl} alt="Movie Poster" />
                 </div>
                 <div>
-                    <button className="share-btn">Share</button>
+                    <button onClick={props.updatePlayAgain(true)} className="share-btn">Play Again</button>
                 </div>
             </div>
     )

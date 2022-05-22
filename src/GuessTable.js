@@ -266,13 +266,11 @@ function GuessTable(props) {
     }, [props.movieID])
 
     //ADD WIN PAGE IF CORRECT MOVIE IS GUESSED
-    const [winPage, setWinPage] = useState(false); 
-    useEffect(() => {
-        if (props.correctTitle === filmTitle || props.correctTitle === secondFilmTitle || props.correctTitle === thirdFilmTitle || props.correctTitle === fourthFilmTitle || props.correctTitle === fifthFilmTitle || props.correctTitle === sixthFilmTitle || props.correctTitle === seventhFilmTitle || props.correctTitle === eighthFilmTitle) {
-            setWinPage(true); 
-        }
-    }, [props.guessCount])
-
+    // useEffect(() => {
+    //     if (props.correctTitle === filmTitle || props.correctTitle === secondFilmTitle || props.correctTitle === thirdFilmTitle || props.correctTitle === fourthFilmTitle || props.correctTitle === fifthFilmTitle || props.correctTitle === sixthFilmTitle || props.correctTitle === seventhFilmTitle || props.correctTitle === eighthFilmTitle) {
+    //         setWinPage(true); 
+    //     }
+    // }, [props.guessCount])
 
     return (
         <div className="table-section">
@@ -286,7 +284,7 @@ function GuessTable(props) {
                 <th>Year</th>
             </tr>
 
-       { winPage ? <WinPage guessCount={props.guessCount} correctTitle={props.correctTitle} moviePoster={props.moviePoster}/> : null}
+       { props.winPage ? <WinPage updatePlayAgain={props.updatePlayAgain} time={props.time} guessCount={props.guessCount} correctTitle={props.correctTitle} moviePoster={props.moviePoster}/> : null }
 
           {props.guessCount > 0 ? <RowOne guessCount={props.guessCount} filmTitle={filmTitle} director={director} actors={actors} genre={genre} company={company} year={year}
           correctActors={props.correctActors} correctDirector={props.correctDirector} correctTitle={props.correctTitle}
