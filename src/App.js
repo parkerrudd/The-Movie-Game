@@ -154,7 +154,7 @@ function App() {
   //RESET ON NEW DAY 
   const [winPage, setWinPage] = useState(false);
   useEffect(() => {
-    if (correctTitle.value === movie.value) {
+    if (correctID === guessMovieID) {
       setWinPage(true); 
       // setPlayAgain(false); 
       console.log('correct!'); 
