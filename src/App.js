@@ -4,6 +4,7 @@ import './App.css';
 import Letters from "./letters";
 import Actor from "./actor";
 import GuessTable from "./GuessTable";
+import WinPage from "./WinPage";
 // import Autocomplete from "./Autocomplete";
 
 
@@ -18,7 +19,7 @@ function App() {
 
   //GENERATE STARTING POINT
   const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption', ]
-  const [day, setDay] = useState(0); //write function to increase by one every new day
+  let day = 0; 
   var today = new Date();
   var clock = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   const [time, setTime] = useState(""); 
@@ -31,6 +32,11 @@ function App() {
   //   }
   // }, [time])
 
+  // useEffect(() => {
+  //   const day = (Math.floor(Math.random() * firstMovie.length - 1)) 
+  //   console.log(day);
+  // }, []); 
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(clock); 
@@ -40,6 +46,7 @@ function App() {
   }, [clock]);
 
   useEffect(() => {
+    day = (Math.floor(Math.random() * firstMovie.length - 1))
     var axios = require('axios');
     var config = {
       method: 'get',
@@ -63,11 +70,12 @@ function App() {
     const [guess, setGuess] = useState(); 
  
     //GET MOVIE GUESS AND SET ID
+
     const getInputValue = (event) => {
         setMovie(event.target.value); 
     }; 
 
-    const movieQuery = () => { 
+    const movieQuery = () => {
       const axios = require('axios');
 
       let config = {
@@ -149,27 +157,30 @@ function App() {
       console.log(error);
       });
 
-  }, [correctID])
+  }, [correctID]); 
 
-  //RESET ON NEW DAY 
-  const [winPage, setWinPage] = useState(false);
-  useEffect(() => {
-    if (correctID === guessMovieID) {
-      setWinPage(true); 
-      // setPlayAgain(false); 
-      console.log('correct!'); 
-    }
-  }, [guessCount])
-
+  //RESET GAME
+  const [winPage, setWinPage] = useState(false); 
   const [playAgain, setPlayAgain] = useState(false); 
 
-    useEffect(() => {
-        if (playAgain === true) {
-          setWinPage(false);
-          console.log('hello')
-        }
-    }, [playAgain]) 
-  
+  useEffect(() => {
+    if (correctID.value === guessMovieID.value && guessCount > 0) {
+      setWinPage(true); 
+      console.log(correctID); 
+      console.log(guessMovieID); 
+    } else {
+      setWinPage(false); 
+    }
+  }, [guessMovieID]); 
+
+
+    // useEffect(() => {
+    //   if (clock === "22:14:45") {
+    //     setWinPage(false); 
+    //     day + 1; 
+    //     console.log(day); 
+    //   }
+    // }, [clock])
 
   return (
     <div className="App">
@@ -177,8 +188,6 @@ function App() {
         <h1 id="the">The</h1>
         <Letters/>
         <h1 id="game">Game</h1>
-        
-         {/* <Actor current={current} /> */}
   
           <h2>Guess Count: {guessCount}/8</h2>
         
@@ -190,6 +199,8 @@ function App() {
 
             </div>
       </div>   
+      { winPage ? <WinPage updatePlayAgain={playAgain => setPlayAgain(playAgain)} time={clock} guessCount={guessCount} correctTitle={correctTitle} moviePoster={moviePoster}/> : null } 
+
         <GuessTable updatePlayAgain={playAgain => setPlayAgain(playAgain)} winPage={winPage} time={clock} movieID={guessMovieID} guessCount={guessCount} 
         correctActors={correctActors} correctCompany={correctCompany} correctDirector={correctDirector}
         correctGenre={correctGenre} correctTitle={correctTitle} correctYear={correctYear} moviePoster={moviePoster}/> 
