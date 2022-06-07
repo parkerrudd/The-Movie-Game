@@ -133,6 +133,27 @@ th, td {
     padding: 1vw;
 }
 
+@media screen and (max-width: 700px) {
+    #headers {
+        font-size: 1em;
+    }
+
+    th, td {
+        font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #headers {
+        font-size: .8em;
+    }
+
+    th, td {
+        font-size: .6em;
+    }
+}
+
+
 #results {
     max-width: 80vw;
     display: flex;
@@ -162,7 +183,7 @@ th, td {
     align-items: center;
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
-    animation: modalFadeIn .7s;
+    animation: modalFadeIn .7s ease-in;
 }
 
 @keyframes modalFadeIn {

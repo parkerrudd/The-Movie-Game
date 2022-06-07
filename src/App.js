@@ -159,17 +159,21 @@ function App() {
   const [playAgain, setPlayAgain] = useState(false); 
 
   useEffect(() => {
+    if (correctTitle != null) setWinPage(false)
+
+  }, [correctTitle])
+
+  useEffect(() => {
     setGuessMovieID('')
     setWinPage(false)
+  
   }, [])
 
   useEffect(() => {
-    if (correctID === guessMovieID) {
+    if (correctID === guessMovieID && guessCount > 0) {
     setWinPage(true);
     // setPlayAgain(false);
-    console.log(guessMovieID)
-    console.log(correctID)
-    console.log(playAgain);
+  
   }
   }, [guessMovieID])
 
@@ -177,6 +181,7 @@ function App() {
     if (playAgain === true) {
       window.location.reload()
       setWinPage(false);
+
     }
   }, [playAgain])
 
