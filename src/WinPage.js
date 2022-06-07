@@ -6,7 +6,7 @@ function WinPage(props) {
     return (
            <div className="win-page">
                 <div className="win-page-box">
-                    <h3>Guesses: {props.guessCount}</h3>
+                    <h3>Guesses: {props.guessCount}/8</h3>
                     {/* <h3>{props.time}</h3> */}
                 </div>
                 <div>

@@ -185,6 +185,12 @@ function App() {
     }
   }, [playAgain])
 
+  useEffect(() => {
+    if (guessCount === 8) {
+      setWinPage(true)
+    }
+  }, [guessCount])
+
   return (
     <div className="App">
       <div className="guess-section">  
