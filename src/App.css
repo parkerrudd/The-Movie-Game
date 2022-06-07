@@ -45,6 +45,16 @@
     color: #FAD8D6; 
     padding-left: 3vw;
     padding-right: 3vw;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -55,10 +65,14 @@
 
 #the {
     font-size: 3em;
+    animation: fadeIn 2.3s;
+
 }
 
 #game {
     font-size: 3em;
+    animation: fadeIn 2.3s;
+
 }
 
 .wrong {
@@ -79,11 +93,17 @@
     /* height: 45vh; */
 }
 
+#guess-count {
+    animation: fadeIn 1.3s;
+}
+
 .search-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: .5em;
+    animation: fadeIn 1.3s;
+
 }
 
 .actors-searchbar {
@@ -126,6 +146,7 @@
     font-size: 1.2em;
     border-bottom: 3px solid #2E282A;
     border-top: 3px solid #2E282A;
+    animation: fadeIn 1.3s;
 }
 
 th, td {

@@ -198,7 +198,7 @@ function App() {
         <Letters/>
         <h1 id="game">Game</h1>
   
-          <h2>Guess Count: {guessCount}/8</h2>
+          <h2 id="guess-count">Guess Count: {guessCount}/8</h2>
         
             <div>
                 <div className="search-container">
