@@ -259,3 +259,15 @@ td {
 .share-btn:hover {
     background-color: #efa86a;
 }
+
+@media screen and (max-width: 500px) {
+    .movie-poster {
+        width: 30vw;
+    }
+
+    .win-page {
+        width: 60vw;
+        height: 55vh;
+        font-size: .8em;
+    }
+}
