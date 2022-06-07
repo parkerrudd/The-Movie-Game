@@ -18,7 +18,7 @@ function App() {
 
 
   //GENERATE STARTING POINT
-  const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption', ]
+  const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption' ]
   let day = 0; 
   var today = new Date();
   var clock = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -33,17 +33,12 @@ function App() {
   // }, [time])
 
   // useEffect(() => {
-  //   const day = (Math.floor(Math.random() * firstMovie.length - 1)) 
-  //   console.log(day);
-  // }, []); 
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(clock); 
-      console.log('This will run every second!');
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [clock]);
+  //   const interval = setInterval(() => {
+  //     setTime(clock); 
+  //     console.log('This will run every second!');
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [clock]);
 
   useEffect(() => {
     day = (Math.floor(Math.random() * firstMovie.length - 1))
@@ -164,23 +159,26 @@ function App() {
   const [playAgain, setPlayAgain] = useState(false); 
 
   useEffect(() => {
-    if (correctID.value === guessMovieID.value && guessCount > 0) {
-      setWinPage(true); 
-      console.log(correctID); 
-      console.log(guessMovieID); 
-    } else {
-      setWinPage(false); 
+    setGuessMovieID('')
+    setWinPage(false)
+  }, [])
+
+  useEffect(() => {
+    if (correctID === guessMovieID) {
+    setWinPage(true);
+    // setPlayAgain(false);
+    console.log(guessMovieID)
+    console.log(correctID)
+    console.log(playAgain);
+  }
+  }, [guessMovieID])
+
+  useEffect(() => {
+    if (playAgain === true) {
+      window.location.reload()
+      setWinPage(false);
     }
-  }, [guessMovieID]); 
-
-
-    // useEffect(() => {
-    //   if (clock === "22:14:45") {
-    //     setWinPage(false); 
-    //     day + 1; 
-    //     console.log(day); 
-    //   }
-    // }, [clock])
+  }, [playAgain])
 
   return (
     <div className="App">
@@ -199,9 +197,9 @@ function App() {
 
             </div>
       </div>   
-      { winPage ? <WinPage updatePlayAgain={playAgain => setPlayAgain(playAgain)} time={clock} guessCount={guessCount} correctTitle={correctTitle} moviePoster={moviePoster}/> : null } 
+      { winPage ? <WinPage updatePlayAgain={playAgain => setPlayAgain(playAgain)} time={clock} guessCount={guessCount} correctTitle={correctTitle} moviePoster={moviePoster}/> : null }
 
-        <GuessTable updatePlayAgain={playAgain => setPlayAgain(playAgain)} winPage={winPage} time={clock} movieID={guessMovieID} guessCount={guessCount} 
+        <GuessTable  time={clock} movieID={guessMovieID} guessCount={guessCount} 
         correctActors={correctActors} correctCompany={correctCompany} correctDirector={correctDirector}
         correctGenre={correctGenre} correctTitle={correctTitle} correctYear={correctYear} moviePoster={moviePoster}/> 
     </div>
