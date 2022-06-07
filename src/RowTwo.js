@@ -27,7 +27,7 @@ function RowTwo(props) {
                 {props.company === props.correctCompany ? <td style={{background:'#549C30'}}>{props.company}</td> 
                 :<td style={{background:'#AA3F44'}}>{props.company}</td>}
                 {props.year === props.correctYear? <td style={{background:'#549C30'}}>{props.year}</td> 
-                :<td style={{background:'#AA3F44'}}>{props.year}</td>}
+                : props.year[0] === props.correctYear[0] && props.year[2] === props.correctYear[2] ? <td style={{background:'#f7b500'}}>{props.year}</td> : <td style={{background:'#AA3F44'}}>{props.year}</td>}
         </tr>
     )
 }

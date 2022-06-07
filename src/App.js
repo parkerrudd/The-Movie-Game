@@ -18,7 +18,7 @@ function App() {
 
 
   //GENERATE STARTING POINT
-  const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption' ]
+  const firstMovie = ['Iron Man', 'Avatar', 'Titanic', 'Shawshank Redemption', 'Reservoir Dogs', 'Groundhog Day', 'Paddington 2', 'Amelie', 'Brokeback Mountain', 'Donnie Darko', 'Scott Pilgrim Vs. The World', 'Portrait Of A Lady On Fire', 'Léon', 'Logan', 'The Terminator', 'No Country For Old Men', 'Titanic', 'The Exorcist', 'Black Panther', 'Shaun Of The Dead' ]
   let day = 0; 
   var today = new Date();
   var clock = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -41,7 +41,7 @@ function App() {
   // }, [clock]);
 
   useEffect(() => {
-    day = (Math.floor(Math.random() * firstMovie.length - 1))
+    day = (Math.floor(Math.random() * firstMovie.length))
     var axios = require('axios');
     var config = {
       method: 'get',

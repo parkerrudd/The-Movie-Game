@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap');
+
 * {
     margin: 0; 
     padding: 0; 
     box-sizing: border-box;
+    font-family: 'Karla', sans-serif;
 }
 
 .App {
@@ -112,6 +115,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
 
 #headers {
@@ -131,6 +135,21 @@ th, td {
     border-right: 1.5px solid #2E282A;
     font-size: 1em;
     padding: 1vw;
+}
+
+td {
+    animation: slideDown .5s ease-in;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -217,5 +236,5 @@ th, td {
 }
 
 .share-btn:hover {
-    background-color: rgb(243, 183, 130);
+    background-color: #efa86a;
 }
