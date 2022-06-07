@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/The-Movie-Game/static/css/main.39980e18.css",
+    "main.js": "/The-Movie-Game/static/js/main.7469cc4d.js",
+    "static/js/787.aeaecc47.chunk.js": "/The-Movie-Game/static/js/787.aeaecc47.chunk.js",
+    "index.html": "/The-Movie-Game/index.html",
+    "main.39980e18.css.map": "/The-Movie-Game/static/css/main.39980e18.css.map",
+    "main.7469cc4d.js.map": "/The-Movie-Game/static/js/main.7469cc4d.js.map",
+    "787.aeaecc47.chunk.js.map": "/The-Movie-Game/static/js/787.aeaecc47.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.39980e18.css",
+    "static/js/main.7469cc4d.js"
+  ]
+}
