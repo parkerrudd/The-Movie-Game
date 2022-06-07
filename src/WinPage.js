@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React from "react";
 
 function WinPage(props) {
     const posterUrl = `https://image.tmdb.org/t/p/original/${props.moviePoster}`; 

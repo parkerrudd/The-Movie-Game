@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './App.css'; 
 import Letters from "./letters";
-import Actor from "./actor";
 import GuessTable from "./GuessTable";
 import WinPage from "./WinPage";
-// import Autocomplete from "./Autocomplete";
 
 
 function App() {
@@ -24,6 +22,8 @@ function App() {
   var clock = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   const [time, setTime] = useState(""); 
 
+
+//CLOCK 
   // useEffect(() => {
   //   if (clock === "18:30:5") { 
   //     setWinPage(false); 
@@ -65,7 +65,6 @@ function App() {
     const [guess, setGuess] = useState(); 
  
     //GET MOVIE GUESS AND SET ID
-
     const getInputValue = (event) => {
         setMovie(event.target.value); 
     }; 
